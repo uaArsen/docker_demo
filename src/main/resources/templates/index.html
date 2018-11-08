@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<style>
+    html {
+        box-sizing: border-box;
+    }
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+
+    body {
+        background:#e1e1e1;
+        font-size:16px;
+        font-family:sans-serif;
+        line-height:25px;
+        color:#555;
+        margin:0;
+    }
+
+    .hamburger div, .container {
+        -webkit-transition:all .08s ease-out;  -moz-transition:all .08s ease-out;  -o-transition:all .08s ease-out;  transition:all .08s ease-out;
+    }
+
+    .hamburger div, .hamburger, nav, .main, .burger-wrap, .menu-cover {
+        -webkit-transition:all .15s ease;  -moz-transition:all .15s ease;  -o-transition:all .15s ease;  transition:all .15s ease;
+    }
+
+
+    .hamburger span {
+        position:absolute;
+        top:35px;
+        color:#222;
+        font-size:0.85em;
+    }
+
+    .hamburger div {
+        position:absolute;
+        height:4px;
+        width:40px;
+        background:#222;
+    }
+
+
+    .burger-wrap:hover .hamburger {
+        left:15px;
+    }
+
+    .burger-wrap:hover .hamburger span {
+        margin-left:6px;
+    }
+
+    .burger-wrap:hover .burger1 {
+        transform:rotate(215deg);
+        width:30px;
+        left:20px;
+        top:8px;
+    }
+    .burger-wrap:hover .burger2 {
+        left:3px;
+        width:40px;
+    }
+    .burger-wrap:hover .burger3 {
+        transform:rotate(-215deg);
+        width:30px;
+        left:20px;
+        top:24px;
+    }
+
+    .nav-open nav {
+        left:0;
+    }
+
+    .nav-open .main {
+        margin-left:0;
+    }
+
+
+    .menu-cover {
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        background:rgba(0,0,0,0.2);
+        bottom:auto;
+        z-index:10;
+        cursor:pointer;
+    }
+
+    .nav-open .menu-cover {
+        bottom:0;
+    }
+
+    .nav-open .container {
+        transform:scale(0.98);
+    }
+
+    nav {
+        position:fixed;
+        padding:1em;
+        left:-100%;
+        background:#34B5D9;
+        color:#fff;
+        width:150px;
+        top:0;
+        bottom:0;
+        box-shadow:0 0 0 20px rgba(0,0,0,0.05);
+        z-index:60;
+    }
+
+    nav ul {
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+
+    .main {
+        float:left;
+        width:100%;
+        position:relative;
+    }
+
+    .container {
+        margin:65px auto 4em;
+        position:relative;
+        background:white;
+        width:800px;
+        padding:1em 3em;
+        box-shadow:-10px 10px 0 0 rgba(0,0,0,0.05);
+        border-left:5px solid #34B5D9;
+    }
+
+    .container:before {
+        content:'';
+        position:absolute;
+        top:0;
+        right:0;
+        width: 0;
+        height: 0;
+        border-top: 3em solid #e1e1e1;
+        border-left: 3em solid transparent;
+    }
+    .container:after {
+        content:'';
+        position:absolute;
+        top:0;
+        right:0;
+        width: 0;
+        height: 0;
+        border-left: 3em solid #e9e9e9;
+        border-top: 3em solid transparent;
+    }
+
+    h1 {
+        color:#222;
+        margin-bottom:0;
+    }
+
+    h3 {
+        font-weight:normal;
+        text-transform:uppercase;
+        color:#999;
+        font-size:0.9em;
+    }
+
+    .submit-btn {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        border-radius: 12px
+
+    }
+    input[type=text] {
+        width: 100%;
+        height: 40px;
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding-left: 40px;
+    }
+</style>
+<body>
+<section class="main">
+
+    <div class="menu-cover"></div>
+
+    <div class="container">
+        <img src="https://www.docker.com/sites/default/files/Whale%20Logo332_5.png" />
+        <h1>Docker Demo</h1>
+        <br />
+        <form method="post" action="/add">
+            <input id="text-input" type="text" name="text" />
+            <input class="submit-btn" id="submit-btn" type="submit" value="ADD TEXT">
+        </form>
+        <br/>
+        <h3>Content of Demo.txt</h3>
+        <th:block th:each="t,iterStat : ${text}" th:remove="tag">
+        <p th:text="${t}">
+        </p>
+        </th:block>
+    </div>
+
+</section>
+</body>
+</html>

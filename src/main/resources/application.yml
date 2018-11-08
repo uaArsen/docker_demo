@@ -1,0 +1,4 @@
+demo:
+  path: ${DEMO_PATH:resources/demo.txt}
+server:
+  port: 8080
